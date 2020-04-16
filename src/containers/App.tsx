@@ -8,7 +8,7 @@ export const App: React.FC = () => {
   
   return (
     <Context.Provider value={{ state, dispatch }}>
-      <h1>Hello World</h1>
+      <h1>ReactContextTodoApp</h1>
       <Todo />
     </Context.Provider>
   );

@@ -7,12 +7,20 @@ export const Todo: React.FC = () => {
   
   return (
     <div>
-      {todos.map(todo => (
-        <p>{todo.name}</p>
+      {todos.map((todo: any, index: number) => (
+        <p key={index}>{todo.name}</p>
       ))}
-      <button onClick={() => dispatch({ type: 'fetch', data: { name: 'Imshun' } })}>
-        fetch
+      <button
+        onClick={() =>
+          dispatch({
+            type: "add",
+            reducer_type: "todo",
+            data: { name: "Imshun" },
+          })
+        }
+      >
+        add
       </button>
     </div>
-  )
+  );
 };

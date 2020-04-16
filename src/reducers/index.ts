@@ -1,25 +1,23 @@
-interface ITodo {
-  name: string;
-}
+import { todoReducer, Todo, initialTodos } from './todo';
 
 export interface IState {
-  todos: ITodo[];
+  todos: Todo[];
 }
 
 export const initialState = {
-  todos: [
-    {
-      name: 'Hello World',
-    }
-  ],
+  todos: initialTodos,
 };
 
-export const reducer = (state: IState, action: any) => {
-  switch (action.type) {
-    case "fetch":
-      const old_state = state.todos;
-      return { todos: old_state.concat({ name: action.data.name }) };
+interface Action {
+  reducer_type: 'todo' | undefined;
+  type: any;
+}
+
+export const reducer = (state: IState, action: Action) => {
+  switch (action.reducer_type) {
+    case 'todo':
+      return todoReducer(state, action)
     default:
-      return state;
+      return state
   }
 };
