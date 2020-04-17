@@ -1,11 +1,13 @@
 import { IState } from './index';
 
 export interface Todo {
+  title: string;
   name: string;
 }
 
 export const initialTodos = [
   {
+    title: 'Todo title',
     name: 'Hello World',
   }
 ]
@@ -13,8 +15,13 @@ export const initialTodos = [
 export const todoReducer = (state: IState, action: any) => {
   switch (action.type) {
     case "add":
-      const old_state = state.todos;
-      return { todos: old_state.concat({ ...action.data }) };
+      const data = action.data;
+      return { 
+        todos: state.todos.concat(data),
+      };
+    case "delete":
+      delete state.todos[action.data.i];
+      return { ...state };
     default:
       return state;
   }
